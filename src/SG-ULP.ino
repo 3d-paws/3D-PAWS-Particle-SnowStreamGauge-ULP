@@ -1,6 +1,6 @@
-PRODUCT_VERSION(12);
+PRODUCT_VERSION(13);
 #define COPYRIGHT "Copyright [2024] [University Corporation for Atmospheric Research]"
-#define VERSION_INFO "SG-ULP-20240714"
+#define VERSION_INFO "SG-ULP-20240823"
 
 /*
  *======================================================================================================================
@@ -42,6 +42,7 @@ PRODUCT_VERSION(12);
  *                         Updated I2C_Check_Sensors()
  *          2024-06-23 RJB Added Copyright
  *          2024-07-14 RJB Split the code into include files
+ *          2024-08-23 RJB Fixed distance gauge code
  *
  * NOTES:
  * When there is a successful transmission of an observation any need to send obersavations will be sent. 
@@ -449,11 +450,11 @@ void setup() {
   lux_initialize();
 
   if (SD.exists(SD_5M_DIST_FILE)) {
-    od_adjustment = 1.25;
+    dg_adjustment = 1.25;
     Output ("DIST=5M");
   }
   else {
-    od_adjustment = 2.5;
+    dg_adjustment = 2.5;
     Output ("DIST=10M");
   }
 

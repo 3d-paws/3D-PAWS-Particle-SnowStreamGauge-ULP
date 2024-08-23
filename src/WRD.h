@@ -5,16 +5,27 @@
  */
 
 /*
+ * Distance Sensors
+ * The 5-meter sensors (MB7360, MB7369, MB7380, and MB7389) use a scale factor of (Vcc/5120) per 1-mm.
+ * Particle 12bit resolution (0-4095),  Sensor has a resolution of 0 - 5119mm,  Each unit of the 0-4095 resolution is 1.25mm
+ * Feather has 10bit resolution (0-1023), Sensor has a resolution of 0 - 5119mm, Each unit of the 0-1023 resolution is 5mm
+ * 
+ * The 10-meter sensors (MB7363, MB7366, MB7383, and MB7386) use a scale factor of (Vcc/10240) per 1-mm.
+ * Particle 12bit resolution (0-4095), Sensor has a resolution of 0 - 10239mm, Each unit of the 0-4095 resolution is 2.5mm
+ * Feather has 10bit resolution (0-1023), Sensor has a resolution of 0 - 10239mm, Each unit of the 0-1023 resolution is 10mm
+ */
+
+/*
  * =======================================================================================================================
  *  Distance Gauge
  * =======================================================================================================================
  */
 #define DISTANCEGAUGE   A3
-#define OD_BUCKETS      60
+#define DG_BUCKETS      60
 char SD_5M_DIST_FILE[] = "5MDIST.TXT";  // If file exists use adjustment of 1.25. No file, then 10m Sensor is 2.5
-float od_adjustment = 2.5;       // Default sensor is 10m 
-unsigned int od_bucket = 0;            // Observation Distance Buckets
-unsigned int od_buckets[OD_BUCKETS];
+float dg_adjustment = 2.5;              // Default sensor is 10m 
+unsigned int dg_bucket = 0;             //  Distance Buckets
+unsigned int dg_buckets[DG_BUCKETS];
 
 /* 
  *=======================================================================================================================
@@ -24,18 +35,18 @@ unsigned int od_buckets[OD_BUCKETS];
 unsigned int distance_gauge_median() {
   int i;
 
-  for (i=0; i<OD_BUCKETS; i++) {
+  for (i=0; i<DG_BUCKETS; i++) {
     // delay(500);
     delay(250);
-    od_buckets[i] = (int) analogRead(DISTANCEGAUGE);
+    dg_buckets[i] = (int) analogRead(DISTANCEGAUGE) * dg_adjustment;;
     // sprintf (Buffer32Bytes, "SG[%02d]:%d", i, od_buckets[i]);
     // OutputNS (Buffer32Bytes);
   }
   
-  mysort(od_buckets, OD_BUCKETS);
-  i = (OD_BUCKETS+1) / 2 - 1; // -1 as array indexing in C starts from 0
+  mysort(dg_buckets, DG_BUCKETS);
+  i = (DG_BUCKETS+1) / 2 - 1; // -1 as array indexing in C starts from 0
   
-  return (od_buckets[i]/4); // Pins are 12bit resolution (0-4095) Sensor values are 0-1023
+  return (dg_buckets[i]);
 }
 
 

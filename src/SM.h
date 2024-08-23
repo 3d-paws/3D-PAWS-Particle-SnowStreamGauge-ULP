@@ -35,7 +35,7 @@ void StationMonitor() {
   memset(msgbuf, 0, sizeof(msgbuf));
   sprintf (msgbuf+strlen(msgbuf), "DIST M:%d R:%d %s", 
     distance_gauge_median(), analogRead(DISTANCEGAUGE),
-    (od_adjustment == 1.25) ? "5M" : "10M"
+    (dg_adjustment == 1.25) ? "5M" : "10M"
     );
 
   len = (strlen (msgbuf) > 21) ? 21 : strlen (msgbuf);
