@@ -1,6 +1,6 @@
-PRODUCT_VERSION(13);
+PRODUCT_VERSION(14);
 #define COPYRIGHT "Copyright [2024] [University Corporation for Atmospheric Research]"
-#define VERSION_INFO "SG-ULP-20240823"
+#define VERSION_INFO "SSG-ULP-20240824"
 
 /*
  *======================================================================================================================
@@ -42,7 +42,8 @@ PRODUCT_VERSION(13);
  *                         Updated I2C_Check_Sensors()
  *          2024-06-23 RJB Added Copyright
  *          2024-07-14 RJB Split the code into include files
- *          2024-08-23 RJB Fixed distance gauge code
+ *          2024-08-23 RJB Version 13 Fixed distance gauge code
+ *          2024-08-24 RJB Version 14 Moved named from SG-ULP to SSG-ULP
  *
  * NOTES:
  * When there is a successful transmission of an observation any need to send obersavations will be sent. 
