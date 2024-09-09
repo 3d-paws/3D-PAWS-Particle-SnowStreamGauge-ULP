@@ -33,17 +33,16 @@ void StationMonitor() {
   // Line 1 of OLED Distance Median & Distance Raw
   // =================================================================
   memset(msgbuf, 0, sizeof(msgbuf));
-  sprintf (msgbuf+strlen(msgbuf), "DIST M:%d R:%d %s", 
+  sprintf (msgbuf+strlen(msgbuf), "DM:%d DR:%d %s", 
     distance_gauge_median(), analogRead(DISTANCEGAUGE),
-    (dg_adjustment == 1.25) ? "5M" : "10M"
-    );
+    (dg_adjustment == 1.25) ? "5M" : "10M");
 
   len = (strlen (msgbuf) > 21) ? 21 : strlen (msgbuf);
   for (c=0; c<=len; c++) oled_lines [1][c] = *(msgbuf+c);
   Serial_writeln (msgbuf);
 
   // =================================================================
-  // Line 2 of OLED Wind Direction and Wind Speed
+  // Line 2 of OLED Signal Information
   // =================================================================
   memset(msgbuf, 0, sizeof(msgbuf));
 

@@ -126,6 +126,11 @@ PRODUCT_VERSION(14);
  * AuthType,ssid,password
  * 
  * Where AuthType is one of these keywords (WEP WPA WPA2)
+ *
+ * ========================================================
+ * Distance Sensor Type Setup.
+ * ========================================================
+ * Create SD Card File 5MDIST.TXT for %m sensor and 1.25 multiplier. No file for 10m Sensor and 2.5 multiplier
  * ======================================================================================================================
  */
 #include <SPI.h>
