@@ -44,6 +44,8 @@ PRODUCT_VERSION(14);
  *          2024-07-14 RJB Split the code into include files
  *          2024-08-23 RJB Version 13 Fixed distance gauge code
  *          2024-08-24 RJB Version 14 Moved named from SG-ULP to SSG-ULP
+ *          2024-09-11 RJB When setting SIM to INTERNAL we now set changed = true to
+ *                         report success and reboot message.
  *
  * NOTES:
  * When there is a successful transmission of an observation any need to send obersavations will be sent. 
