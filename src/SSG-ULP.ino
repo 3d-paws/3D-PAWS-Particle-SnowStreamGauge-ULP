@@ -1,6 +1,6 @@
 PRODUCT_VERSION(14);
 #define COPYRIGHT "Copyright [2024] [University Corporation for Atmospheric Research]"
-#define VERSION_INFO "SSG-ULP-20240911"
+#define VERSION_INFO "SSG-ULP-20240927"
 
 /*
  *======================================================================================================================
@@ -46,6 +46,7 @@ PRODUCT_VERSION(14);
  *          2024-08-24 RJB Version 14 Moved named from SG-ULP to SSG-ULP
  *          2024-09-11 RJB When setting SIM to INTERNAL we now set changed = true to
  *                         report success and reboot message.
+ *          2024-09-28 RJB Corrected reporting SHT and HIH Humidity with the temperature value
  *
  * NOTES:
  * When there is a successful transmission of an observation any need to send obersavations will be sent. 
