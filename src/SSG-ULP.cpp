@@ -1,3 +1,16 @@
+/******************************************************/
+//       THIS IS A GENERATED FILE - DO NOT EDIT       //
+/******************************************************/
+
+#include "Particle.h"
+#line 1 "/Users/rjbubon/Documents/Particle/SSG-ULP/src/SSG-ULP.ino"
+int seconds_to_next_obs();
+bool NetworkConnect();
+void NetworkDisconnect();
+void firmwareUpdateHandler(system_event_t event, int param);
+void setup();
+void loop();
+#line 1 "/Users/rjbubon/Documents/Particle/SSG-ULP/src/SSG-ULP.ino"
 PRODUCT_VERSION(14);
 #define COPYRIGHT "Copyright [2024] [University Corporation for Atmospheric Research]"
 #define VERSION_INFO "SSG-ULP-20240927"
