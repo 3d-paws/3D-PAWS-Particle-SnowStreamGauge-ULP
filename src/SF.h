@@ -132,7 +132,7 @@ void mysort(unsigned int a[], unsigned int n) {
  * =======================================================================================================================
  */
 bool isnumeric(char *s) {
-  for (int i=0; i< strlen(s); i++) {
+  for (int i=0; i< (int) strlen(s); i++) {
     if (!isdigit(*(s+i)) ) {
       return(false);
     }

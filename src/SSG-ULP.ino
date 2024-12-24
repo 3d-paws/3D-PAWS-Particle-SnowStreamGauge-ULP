@@ -1,6 +1,6 @@
-PRODUCT_VERSION(14);
+PRODUCT_VERSION(15);
 #define COPYRIGHT "Copyright [2024] [University Corporation for Atmospheric Research]"
-#define VERSION_INFO "SSG-ULP-20240927"
+#define VERSION_INFO "SSG-ULP-20241224v15"
 
 /*
  *======================================================================================================================
@@ -47,9 +47,13 @@ PRODUCT_VERSION(14);
  *          2024-09-11 RJB When setting SIM to INTERNAL we now set changed = true to
  *                         report success and reboot message.
  *          2024-09-28 RJB Corrected reporting SHT and HIH Humidity with the temperature value
+ * 
+ *          Version 15 Released on 2024-12-24
  *          2024-11-05 RJB Discovered BMP390 first pressure reading is bad. Added read pressure to bmx_initialize()
  *                         Bug fixes for 2nd BMP sensor in bmx_initialize() using first sensor data structure
  *                         Now will only send humidity if bmx sensor supports it.
+ *          2024-12-24 RJB Compiled with deviceOS6.1.1
+ *                         Added INFO support feature
  *
  * NOTES:
  * When there is a successful transmission of an observation any need to send obersavations will be sent. 
@@ -217,6 +221,8 @@ int  cf_reboot_countdown_timer = 79200; // There is overhead transmitting data s
                                         // Set to 0 to disable feature
 int DailyRebootCountDownTimer;
 
+bool SendSystemInformation = true; // Send System Information to Particle Cloud. True means we will send at boot.
+
 bool firmwareUpdateInProgress = false;
 
 #if PLATFORM_ID == PLATFORM_BORON
@@ -247,6 +253,8 @@ char SD_simold_file[] = "SIMOLD.TXT";   // SIM.TXT renamed to this after sim con
 
 char SD_wifi_file[] = "WIFI.TXT";         // File used to set WiFi configuration
 
+char SD_INFO_FILE[] = "INFO.TXT";       // Store INFO information in this file. Every INFO call will overwrite content
+
 /*
  * ======================================================================================================================
  *  Local Code Includes - Do not change the order of the below 
@@ -264,6 +272,7 @@ char SD_wifi_file[] = "WIFI.TXT";         // File used to set WiFi configuration
 #include "OBS.h"                  // Do Observation Processing
 #include "SM.h"                   // Station Monitor
 #include "PS.h"                   // Particle Support Functions
+#include "INFO.h"                 // Station Fonformation
 
 /* 
  *=======================================================================================================================
@@ -511,6 +520,11 @@ void loop() {
     if (Time.isValid()) {
       if (Particle.connected()) {
         Output ("Particle Connected");
+
+        if (SendSystemInformation) {
+          INFO_Do(); // Function sets SendSystemInformation back to false.
+        }
+
         OBS_Do();
 
         // Shutoff System Status Bits related to initialization after we have logged first observation 

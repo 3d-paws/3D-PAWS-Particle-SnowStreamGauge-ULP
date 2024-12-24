@@ -231,7 +231,7 @@ void SimChangeCheck() {
 
           // At this point we have encountered EOF, CR, or LF
           // Now we need to terminate array with a null to make it a string
-          buf[i] = NULL;
+          buf[i] = (char) NULL;
 
           // Parse string for the following
           //   INTERNAL
