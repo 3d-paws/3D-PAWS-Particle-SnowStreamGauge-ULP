@@ -56,8 +56,9 @@ PRODUCT_VERSION(16);
  *                         Added INFO support feature
  *          2024-09-24 RJB Compiled with deviceOS 6.1.1
  * 
- *          Version 15 Released on 2025-0
+ *          Version 16 Released on 2025-09-24
  *          2025-02-27 RJB Changed distance pin to A4 from A3. 
+ *          2025-09-24 RJB Updated deviceOS to 6.3.3
  *
  * NOTES:
  * When there is a successful transmission of an observation any need to send obersavations will be sent. 
