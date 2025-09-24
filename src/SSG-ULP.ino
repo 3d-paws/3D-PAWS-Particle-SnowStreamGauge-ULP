@@ -1,6 +1,6 @@
-PRODUCT_VERSION(15);
+PRODUCT_VERSION(16);
 #define COPYRIGHT "Copyright [2024] [University Corporation for Atmospheric Research]"
-#define VERSION_INFO "SSG-ULP-20241224v15"
+#define VERSION_INFO "SSG-ULP-20250924v16"
 
 /*
  *======================================================================================================================
@@ -52,8 +52,12 @@ PRODUCT_VERSION(15);
  *          2024-11-05 RJB Discovered BMP390 first pressure reading is bad. Added read pressure to bmx_initialize()
  *                         Bug fixes for 2nd BMP sensor in bmx_initialize() using first sensor data structure
  *                         Now will only send humidity if bmx sensor supports it.
- *          2024-12-24 RJB Compiled with deviceOS6.1.1
+ *          2024-12-24 RJB Compiled with deviceOS 6.1.1
  *                         Added INFO support feature
+ *          2024-09-24 RJB Compiled with deviceOS 6.1.1
+ * 
+ *          Version 15 Released on 2025-0
+ *          2025-02-27 RJB Changed distance pin to A4 from A3. 
  *
  * NOTES:
  * When there is a successful transmission of an observation any need to send obersavations will be sent. 
